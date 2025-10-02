@@ -7,14 +7,14 @@ struct Node {
 };
 
 struct Node* createNode(int data) {
-    struct Node newNode = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = data;
     newNode->next = NULL;
     return newNode;
 }
 
 void insertAtEnd(struct Node* head, int data) {
-    struct Node newNode = createNode();
+    struct Node* newNode = createNode();
     if (*head == NULL) {
         *head = newNode;
         newNode->next = *head; 
@@ -33,7 +33,6 @@ void displayList(struct Node* head) {
         printf("The list is empty.\n");
         return;
     }
-
     struct Node* temp = head;
     do {
         printf("%d -> ", temp->data);
@@ -49,7 +48,6 @@ void deleteNode(struct Node** head, int key) {
     }
 
     struct Node *current = *head, *prev = NULL;
-
     if (current->data == key) {
         if (current->next == *head) { 
             free(current);
@@ -75,14 +73,12 @@ void deleteNode(struct Node** head, int key) {
         printf("Key not found in the list.\n");
         return;
     }
-
     prev->next = current->next;
     free(current);
 }
 
 int main() {
     struct Node* head = NULL;
-
     insertAtEnd(&head, 10);
     insertAtEnd(&head, 20);
     insertAtEnd(&head, 30);
